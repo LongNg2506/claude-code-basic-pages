@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { surface: '#090A14', primary: '#DF6B33' },
+          fontFamily: { poppins: ['Poppins', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #090A14; }
+    .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); }
+    .stat-card { transition: all 0.25s ease; }
+    .stat-card:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+    .primary-btn { background: #DF6B33; transition: all 0.25s ease; }
+    .primary-btn:hover { background: #c85d2a; box-shadow: 0 0 28px rgba(223,107,51,0.35); }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .animate-fade-in { animation: fadeInUp 0.5s ease forwards; opacity: 0; }
+    .delay-0 { animation-delay: 0.05s; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; }
+    .tab-btn { transition: all 0.2s ease; color: rgba(255,255,255,0.45); border-bottom: 2px solid transparent; padding-bottom: 8px; }
+    .tab-btn.active { color: #DF6B33; border-bottom-color: #DF6B33; }
+    .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.7); }
+  </style>
+</head>
+<body class="min-h-screen font-inter text-gray-300" style="background-color: #090A14;">
+
+  <!-- Background glow -->
+  <!-- Removed decorative glow elements -->
+
+  <!-- Header -->
+  <header class="relative z-10 glass-card border-t-0 border-l-0 border-r-0 sticky top-0 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #DF6B33, #e8834e);">
+          <i data-lucide="bar-chart-3" class="w-5 h-5 text-white"></i>
+        </div>
+        <h1 class="font-poppins font-bold text-lg text-white hidden sm:block">E-Commerce Analytics</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+          <i data-lucide="bell" class="w-5 h-5 text-gray-400"></i>
+        </button>
+        <button class="p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+          <i data-lucide="settings" class="w-5 h-5 text-gray-400"></i>
+        </button>
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer" style="background: rgba(223,107,51,0.15);">
+          <i data-lucide="user" class="w-4 h-4" style="color: #DF6B33;"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+    <!-- Page Title -->
+    <div class="animate-fade-in delay-0">
+      <h2 class="font-poppins font-extrabold text-2xl sm:text-3xl text-white">Sales & Marketing Report</h2>
+      <p class="font-inter text-sm mt-1" style="color: rgba(255,255,255,0.45);">E-Commerce Performance Overview — Q1 2026</p>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-1">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(223,107,51,0.15);">
+            <i data-lucide="dollar-sign" class="w-5 h-5" style="color: #DF6B33;"></i>
+          </div>
+          <span class="badge text-green-400" style="background: rgba(34,197,94,0.12);">+18.2%</span>
+        </div>
+        <p class="font-poppins font-bold text-xl text-white">$284,560</p>
+        <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Total Revenue</p>
+      </div>
+      <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-1">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(99,102,241,0.15);">
+            <i data-lucide="shopping-cart" class="w-5 h-5" style="color: #818CF8;"></i>
+          </div>
+          <span class="badge text-green-400" style="background: rgba(34,197,94,0.12);">+12.5%</span>
+        </div>
+        <p class="font-poppins font-bold text-xl text-white">4,218</p>
+        <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Total Orders</p>
+      </div>
+      <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-2">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(16,185,129,0.15);">
+            <i data-lucide="trending-up" class="w-5 h-5 text-green-400"></i>
+          </div>
+          <span class="badge text-green-400" style="background: rgba(34,197,94,0.12);">+3.1%</span>
+        </div>
+        <p class="font-poppins font-bold text-xl text-white">3.64%</p>
+        <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Conversion Rate</p>
+      </div>
+      <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-2">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(245,158,11,0.15);">
+            <i data-lucide="credit-card" class="w-5 h-5 text-yellow-400"></i>
+          </div>
+          <span class="badge text-red-400" style="background: rgba(239,68,68,0.12);">-2.3%</span>
+        </div>
+        <p class="font-poppins font-bold text-xl text-white">$67.48</p>
+        <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Avg Order Value</p>
+      </div>
+    </div>
+
+    <!-- Charts Row 1 -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 glass-card rounded-2xl p-6 animate-fade-in delay-3">
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div>
+            <h3 class="font-poppins font-semibold text-white">Revenue Trend</h3>
+            <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">Monthly revenue over the past 12 months</p>
+          </div>
+          <div class="flex gap-1">
+            <button class="tab-btn active font-inter text-sm font-medium cursor-pointer" id="tab-monthly" onclick="switchRevenueTab('monthly')">Monthly</button>
+            <button class="tab-btn font-inter text-sm font-medium cursor-pointer" id="tab-weekly" onclick="switchRevenueTab('weekly')">Weekly</button>
+          </div>
+        </div>
+        <div id="revenue-chart" class="w-full" style="height: 280px;"></div>
+      </div>
+      <div class="glass-card rounded-2xl p-6 animate-fade-in delay-3">
+        <div class="mb-6">
+          <h3 class="font-poppins font-semibold text-white">Revenue by Category</h3>
+          <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">Distribution across product categories</p>
+        </div>
+        <div id="category-chart" class="w-full" style="height: 240px;"></div>
+        <div class="mt-4 space-y-2">
+          <div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full" style="background:#DF6B33;"></div><span class="font-inter text-xs text-gray-400">Electronics</span></div><span class="font-inter text-xs font-medium text-white">$112,400</span></div>
+          <div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full" style="background:#818CF8;"></div><span class="font-inter text-xs text-gray-400">Fashion</span></div><span class="font-inter text-xs font-medium text-white">$78,900</span></div>
+          <div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full" style="background:#34D399;"></div><span class="font-inter text-xs text-gray-400">Home & Living</span></div><span class="font-inter text-xs font-medium text-white">$54,200</span></div>
+          <div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full" style="background:#FBBF24;"></div><span class="font-inter text-xs text-gray-400">Beauty</span></div><span class="font-inter text-xs font-medium text-white">$39,060</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row 2 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="glass-card rounded-2xl p-6 animate-fade-in delay-4">
+        <div class="mb-6">
+          <h3 class="font-poppins font-semibold text-white">Marketing Channel Performance</h3>
+          <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">Orders and revenue by acquisition channel</p>
+        </div>
+        <div id="marketing-chart" class="w-full" style="height: 280px;"></div>
+      </div>
+      <div class="glass-card rounded-2xl p-6 animate-fade-in delay-4">
+        <div class="mb-6">
+          <h3 class="font-poppins font-semibold text-white">Customer Growth</h3>
+          <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">New vs returning customers over 12 months</p>
+        </div>
+        <div id="customer-chart" class="w-full" style="height: 280px;"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 3 -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 glass-card rounded-2xl p-6 animate-fade-in delay-5">
+        <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
+          <div>
+            <h3 class="font-poppins font-semibold text-white">Top Selling Products</h3>
+            <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">Best performing products this quarter</p>
+          </div>
+          <button class="primary-btn font-inter text-xs text-white px-4 py-2 rounded-lg cursor-pointer">Export Report</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.07);">
+                <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Product</th>
+                <th class="font-inter text-xs font-medium text-right pb-3 pr-4" style="color:rgba(255,255,255,0.4);">Revenue</th>
+                <th class="font-inter text-xs font-medium text-right pb-3 pr-4" style="color:rgba(255,255,255,0.4);">Orders</th>
+                <th class="font-inter text-xs font-medium text-right pb-3 pr-4" style="color:rgba(255,255,255,0.4);">Units</th>
+                <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Trend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-3.5"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(99,102,241,0.15);"><i data-lucide="smartphone" class="w-4 h-4" style="color:#818CF8;"></i></div><div><p class="font-inter text-sm text-white">ProX Wireless Earbuds</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Electronics</p></div></div></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm font-medium text-white">$24,850</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">892</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">1,245</span></td>
+                <td class="py-3.5 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+24%</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-3.5"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(223,107,51,0.15);"><i data-lucide="shirt" class="w-4 h-4" style="color:#DF6B33;"></i></div><div><p class="font-inter text-sm text-white">Urban Jacket v3</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Fashion</p></div></div></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm font-medium text-white">$21,300</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">724</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">892</span></td>
+                <td class="py-3.5 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+18%</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-3.5"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(16,185,129,0.15);"><i data-lucide="lamp" class="w-4 h-4 text-green-400"></i></div><div><p class="font-inter text-sm text-white">Nordic Desk Lamp</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Home & Living</p></div></div></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm font-medium text-white">$16,740</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">612</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">780</span></td>
+                <td class="py-3.5 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+31%</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-3.5"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,0.15);"><i data-lucide="sparkles" class="w-4 h-4 text-yellow-400"></i></div><div><p class="font-inter text-sm text-white">Glow Serum Plus</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Beauty</p></div></div></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm font-medium text-white">$14,920</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">1,024</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">1,580</span></td>
+                <td class="py-3.5 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+15%</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-3.5"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(99,102,241,0.15);"><i data-lucide="watch" class="w-4 h-4" style="color:#818CF8;"></i></div><div><p class="font-inter text-sm text-white">ChronoFit Watch S2</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Electronics</p></div></div></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm font-medium text-white">$12,680</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">398</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">412</span></td>
+                <td class="py-3.5 text-right"><span class="badge text-red-400" style="background:rgba(239,68,68,0.12);">-5%</span></td>
+              </tr>
+              <tr class="hover:bg-white/3 transition-colors">
+                <td class="py-3.5"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(223,107,51,0.15);"><i data-lucide="backpack" class="w-4 h-4" style="color:#DF6B33;"></i></div><div><p class="font-inter text-sm text-white">CityBack Pro 25L</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Fashion</p></div></div></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm font-medium text-white">$10,540</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">568</span></td>
+                <td class="py-3.5 text-right pr-4"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">620</span></td>
+                <td class="py-3.5 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+9%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-6 animate-fade-in delay-5">
+        <div class="mb-6">
+          <h3 class="font-poppins font-semibold text-white">Sales by Region</h3>
+          <p class="font-inter text-xs mt-0.5" style="color:rgba(255,255,255,0.4);">Revenue breakdown by geographic area</p>
+        </div>
+        <div id="region-chart" class="w-full" style="height:200px;"></div>
+        <div class="mt-4 space-y-3">
+          <div class="flex items-center justify-between"><span class="font-inter text-xs text-gray-400">North America</span><div class="flex items-center gap-2"><div class="w-24 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full" style="width:68%;background:#DF6B33;"></div></div><span class="font-inter text-xs font-medium text-white w-12 text-right">$96,320</span></div></div>
+          <div class="flex items-center justify-between"><span class="font-inter text-xs text-gray-400">Europe</span><div class="flex items-center gap-2"><div class="w-24 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full" style="width:48%;background:#818CF8;"></div></div><span class="font-inter text-xs font-medium text-white w-12 text-right">$68,140</span></div></div>
+          <div class="flex items-center justify-between"><span class="font-inter text-xs text-gray-400">Asia Pacific</span><div class="flex items-center gap-2"><div class="w-24 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full" style="width:42%;background:#34D399;"></div></div><span class="font-inter text-xs font-medium text-white w-12 text-right">$59,580</span></div></div>
+          <div class="flex items-center justify-between"><span class="font-inter text-xs text-gray-400">Latin America</span><div class="flex items-center gap-2"><div class="w-24 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full" style="width:22%;background:#FBBF24;"></div></div><span class="font-inter text-xs font-medium text-white w-12 text-right">$31,240</span></div></div>
+          <div class="flex items-center justify-between"><span class="font-inter text-xs text-gray-400">Others</span><div class="flex items-center gap-2"><div class="w-24 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full" style="width:13%;background:rgba(255,255,255,0.3);"></div></div><span class="font-inter text-xs font-medium text-white w-12 text-right">$18,640</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders Table -->
+    <div class="glass-card rounded-2xl p-6 animate-fade-in delay-6">
+      <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
+        <div>
+          <h3 class="font-poppins font-semibold text-white">Recent Orders</h3>
+          <p class="font-inter text-xs mt-0.5" style="color:rgba(255,255,255,0.4);">Latest customer transactions</p>
+        </div>
+        <select class="font-inter text-xs bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-gray-400 outline-none cursor-pointer" style="appearance:none;">
+          <option>All Status</option><option>Completed</option><option>Processing</option><option>Pending</option><option>Cancelled</option>
+        </select>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[640px]">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+              <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Order ID</th>
+              <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Customer</th>
+              <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Product</th>
+              <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Date</th>
+              <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Amount</th>
+              <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+              <td class="py-3"><span class="font-inter text-sm text-white">#ORD-7842</span></td>
+              <td class="py-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0"><span class="font-inter text-xs font-medium text-blue-400">MJ</span></div><span class="font-inter text-sm text-gray-300">Michael Johnson</span></div></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-400">ProX Wireless Earbuds</span></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-500">Apr 18, 2026</span></td>
+              <td class="py-3 text-right"><span class="font-inter text-sm font-medium text-white">$129.99</span></td>
+              <td class="py-3 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">Completed</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+              <td class="py-3"><span class="font-inter text-sm text-white">#ORD-7841</span></td>
+              <td class="py-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0"><span class="font-inter text-xs font-medium text-purple-400">SC</span></div><span class="font-inter text-sm text-gray-300">Sarah Chen</span></div></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-400">Urban Jacket v3</span></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-500">Apr 17, 2026</span></td>
+              <td class="py-3 text-right"><span class="font-inter text-sm font-medium text-white">$89.00</span></td>
+              <td class="py-3 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">Processing</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+              <td class="py-3"><span class="font-inter text-sm text-white">#ORD-7840</span></td>
+              <td class="py-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0"><span class="font-inter text-xs font-medium text-green-400">DK</span></div><span class="font-inter text-sm text-gray-300">David Kim</span></div></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-400">Nordic Desk Lamp</span></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-500">Apr 17, 2026</span></td>
+              <td class="py-3 text-right"><span class="font-inter text-sm font-medium text-white">$64.99</span></td>
+              <td class="py-3 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">Completed</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+              <td class="py-3"><span class="font-inter text-sm text-white">#ORD-7839</span></td>
+              <td class="py-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-orange-500/20 flex items-center justify-center flex-shrink-0"><span class="font-inter text-xs font-medium" style="color:#DF6B33;">EW</span></div><span class="font-inter text-sm text-gray-300">Emma Wilson</span></div></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-400">Glow Serum Plus</span></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-500">Apr 16, 2026</span></td>
+              <td class="py-3 text-right"><span class="font-inter text-sm font-medium text-white">$42.50</span></td>
+              <td class="py-3 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">Processing</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+              <td class="py-3"><span class="font-inter text-sm text-white">#ORD-7838</span></td>
+              <td class="py-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0"><span class="font-inter text-xs font-medium text-cyan-400">RL</span></div><span class="font-inter text-sm text-gray-300">Ryan Lee</span></div></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-400">ChronoFit Watch S2</span></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-500">Apr 15, 2026</span></td>
+              <td class="py-3 text-right"><span class="font-inter text-sm font-medium text-white">$199.00</span></td>
+              <td class="py-3 text-right"><span class="badge text-gray-400" style="background:rgba(255,255,255,0.06);">Pending</span></td>
+            </tr>
+            <tr class="hover:bg-white/3 transition-colors">
+              <td class="py-3"><span class="font-inter text-sm text-white">#ORD-7837</span></td>
+              <td class="py-3"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-pink-500/20 flex items-center justify-center flex-shrink-0"><span class="font-inter text-xs font-medium text-pink-400">AP</span></div><span class="font-inter text-sm text-gray-300">Ana Petrov</span></div></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-400">CityBack Pro 25L</span></td>
+              <td class="py-3"><span class="font-inter text-sm text-gray-500">Apr 14, 2026</span></td>
+              <td class="py-3 text-right"><span class="font-inter text-sm font-medium text-white">$74.99</span></td>
+              <td class="py-3 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex items-center justify-between mt-4 pt-4" style="border-top:1px solid rgba(255,255,255,0.06);">
+        <span class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Showing 1-6 of 4,218 orders</span>
+        <div class="flex items-center gap-1">
+          <button class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white/5 transition-colors cursor-pointer"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+          <button class="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer" style="background:rgba(223,107,51,0.15);color:#DF6B33;">1</button>
+          <button class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-white/5 transition-colors cursor-pointer">2</button>
+          <button class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-white/5 transition-colors cursor-pointer">3</button>
+          <span class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-600">...</span>
+          <button class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-white/5 transition-colors cursor-pointer">702</button>
+          <button class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white/5 transition-colors cursor-pointer"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-white/5 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between flex-wrap gap-3">
+      <p class="font-inter text-xs" style="color:rgba(255,255,255,0.25);">E-Commerce Analytics Dashboard — Q1 2026 Report</p>
+      <p class="font-inter text-xs" style="color:rgba(255,255,255,0.2);">Last updated: April 21, 2026</p>
+    </div>
+  </footer>
+
+  <!-- React + Recharts via ES Module -->
+  <script type="importmap">
+  {
+    "imports": {
+      "react": "https://esm.sh/react@18",
+      "react-dom": "https://esm.sh/react-dom@18",
+      "react-dom/client": "https://esm.sh/react-dom@18/client",
+      "recharts": "https://esm.sh/recharts@2.15.0?external=react,react-dom"
+    }
+  }
+  </script>
+  <script type="module">
+    import { createRoot } from 'react-dom/client';
+    import React from 'react';
+    import * as Recharts from 'recharts';
+    const { ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Line, PieChart, Pie, Cell, BarChart, AreaChart, Area } = Recharts;
+
+    lucide.createIcons();
+
+    // Mock Data
+    const monthlyRevenue = [
+      {month:'May',revenue:18200,orders:312},{month:'Jun',revenue:21400,orders:380},
+      {month:'Jul',revenue:19800,orders:345},{month:'Aug',revenue:24100,orders:420},
+      {month:'Sep',revenue:22800,orders:395},{month:'Oct',revenue:25600,orders:448},
+      {month:'Nov',revenue:31200,orders:524},{month:'Dec',revenue:38400,orders:618},
+      {month:'Jan',revenue:24100,orders:412},{month:'Feb',revenue:22900,orders:398},
+      {month:'Mar',revenue:26800,orders:466},{month:'Apr',revenue:30260,orders:510},
+    ];
+    const weeklyRevenue = [
+      {month:'Week 1',revenue:7200,orders:122},{month:'Week 2',revenue:8100,orders:138},
+      {month:'Week 3',revenue:7600,orders:128},{month:'Week 4',revenue:7360,orders:122},
+    ];
+    const categoryData = [
+      {name:'Electronics',value:112400,fill:'#DF6B33'},{name:'Fashion',value:78900,fill:'#818CF8'},
+      {name:'Home',value:54200,fill:'#34D399'},{name:'Beauty',value:39060,fill:'#FBBF24'},
+    ];
+    const marketingData = [
+      {channel:'Organic',revenue:98200,fill:'#34D399'},{channel:'Paid Ads',revenue:81400,fill:'#DF6B33'},
+      {channel:'Social',revenue:58200,fill:'#818CF8'},{channel:'Email',revenue:36800,fill:'#FBBF24'},
+      {channel:'Referral',revenue:9960,fill:'#F472B6'},
+    ];
+    const customerData = [
+      {month:'May',newC:420,ret:180},{month:'Jun',newC:512,ret:224},
+      {month:'Jul',newC:478,ret:198},{month:'Aug',newC:594,ret:260},
+      {month:'Sep',newC:560,ret:248},{month:'Oct',newC:638,ret:290},
+      {month:'Nov',newC:820,ret:380},{month:'Dec',newC:980,ret:460},
+      {month:'Jan',newC:612,ret:268},{month:'Feb',newC:580,ret:248},
+      {month:'Mar',newC:668,ret:296},{month:'Apr',newC:748,ret:332},
+    ];
+    const regionData = [
+      {name:'N. America',value:96320,fill:'#DF6B33'},{name:'Europe',value:68140,fill:'#818CF8'},
+      {name:'Asia Pac',value:59580,fill:'#34D399'},{name:'Latam',value:31240,fill:'#FBBF24'},
+      {name:'Others',value:18640,fill:'#F472B6'},
+    ];
+
+    // Tooltip style
+    const tip = () => ({
+      contentStyle: {
+        background:'rgba(20,21,35,0.97)', border:'1px solid rgba(255,255,255,0.1)',
+        borderRadius:'10px', padding:'10px 14px', fontFamily:'Inter, sans-serif',
+        fontSize:'12px', color:'#e2e8f0', boxShadow:'0 8px 24px rgba(0,0,0,0.4)',
+      },
+      itemStyle:{color:'#e2e8f0',fontSize:12},
+      labelStyle:{color:'rgba(255,255,255,0.6)',fontSize:11,marginBottom:4},
+    });
+
+    // Revenue Chart
+    function renderRevenueChart(data) {
+      createRoot(document.getElementById('revenue-chart')).render(
+        React.createElement(ResponsiveContainer,{width:'100%',height:280},
+          React.createElement(ComposedChart,{data,margin:{top:5,right:5,left:-15,bottom:0}},
+            React.createElement(CartesianGrid,{strokeDasharray:'3 3',vertical:false}),
+            React.createElement(XAxis,{dataKey:'month',axisLine:false,tickLine:false}),
+            React.createElement(YAxis,{axisLine:false,tickLine:false,tickFormatter:v=>'$'+(v/1000).toFixed(0)+'k'}),
+            React.createElement(Tooltip,tip()),
+            React.createElement(Bar,{dataKey:'revenue',name:'Revenue',fill:'#DF6B33',radius:[6,6,0,0],opacity:0.85}),
+            React.createElement(Line,{type:'monotone',dataKey:'orders',name:'Orders',stroke:'#818CF8',strokeWidth:2,dot:false,activeDot:{r:5,fill:'#818CF8'}})
+          )
+        )
+      );
+    }
+    renderRevenueChart(monthlyRevenue);
+    window.switchRevenueTab = function(period) {
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.getElementById('tab-'+period).classList.add('active');
+      renderRevenueChart(period==='monthly'?monthlyRevenue:weeklyRevenue);
+    };
+
+    // Category Pie
+    createRoot(document.getElementById('category-chart')).render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:240},
+        React.createElement(PieChart,null,
+          React.createElement(Pie,{data:categoryData,cx:'50%',cy:'50%',innerRadius:55,outerRadius:95,paddingAngle:3,dataKey:'value'},
+            categoryData.map((e,i)=>React.createElement(Cell,{key:i,fill:e.fill}))
+          ),
+          React.createElement(Tooltip,{...tip(),formatter:v=>'$'+v.toLocaleString()})
+        )
+      )
+    );
+
+    // Marketing Bar
+    createRoot(document.getElementById('marketing-chart')).render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:280},
+        React.createElement(BarChart,{data:marketingData,layout:'vertical',margin:{top:0,right:30,left:10,bottom:0}},
+          React.createElement(CartesianGrid,{strokeDasharray:'3 3',horizontal:false}),
+          React.createElement(XAxis,{type:'number',axisLine:false,tickLine:false,tickFormatter:v=>'$'+(v/1000).toFixed(0)+'k'}),
+          React.createElement(YAxis,{type:'category',dataKey:'channel',axisLine:false,tickLine:false,width:65}),
+          React.createElement(Tooltip,{...tip(),formatter:v=>'$'+v.toLocaleString()}),
+          React.createElement(Bar,{dataKey:'revenue',name:'Revenue',radius:[0,6,6,0],opacity:0.85},
+            marketingData.map((e,i)=>React.createElement(Cell,{key:i,fill:e.fill}))
+          )
+        )
+      )
+    );
+
+    // Customer Area
+    createRoot(document.getElementById('customer-chart')).render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:280},
+        React.createElement(AreaChart,{data:customerData,margin:{top:5,right:5,left:-15,bottom:0}},
+          React.createElement(CartesianGrid,{strokeDasharray:'3 3',vertical:false}),
+          React.createElement(XAxis,{dataKey:'month',axisLine:false,tickLine:false}),
+          React.createElement(YAxis,{axisLine:false,tickLine:false}),
+          React.createElement(Tooltip,tip()),
+          React.createElement(Area,{type:'monotone',dataKey:'newC',name:'New Customers',stroke:'#DF6B33',fill:'rgba(223,107,51,0.15)',strokeWidth:2,dot:false}),
+          React.createElement(Area,{type:'monotone',dataKey:'ret',name:'Returning',stroke:'#818CF8',fill:'rgba(129,140,248,0.1)',strokeWidth:2,dot:false})
+        )
+      )
+    );
+
+    // Region Pie
+    createRoot(document.getElementById('region-chart')).render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:200},
+        React.createElement(PieChart,null,
+          React.createElement(Pie,{data:regionData,cx:'50%',cy:'50%',innerRadius:40,outerRadius:75,paddingAngle:3,dataKey:'value'},
+            regionData.map((e,i)=>React.createElement(Cell,{key:i,fill:e.fill}))
+          ),
+          React.createElement(Tooltip,{...tip(),formatter:v=>'$'+v.toLocaleString()})
+        )
+      )
+    );
+  </script>
+
+</body>
+</html>
