@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — ShopFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { surface: '#090A14', primary: '#DF6B33' },
+          fontFamily: { poppins: ['Poppins', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #090A14; }
+    .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); }
+    .primary-btn { background: #DF6B33; transition: all 0.25s ease; }
+    .primary-btn:hover { background: #c85d2a; box-shadow: 0 0 28px rgba(223,107,51,0.35); transform: translateY(-1px); }
+    .primary-btn:active { transform: translateY(0); }
+    .nav-link { transition: color 0.2s ease; }
+    .nav-link:hover { color: #DF6B33; }
+    .team-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.14); }
+    .timeline-dot { box-shadow: 0 0 0 3px rgba(223,107,51,0.2); }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .animate-fade-in { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+    .delay-0 { animation-delay: 0.1s; }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.5s; }
+    .delay-5 { animation-delay: 0.6s; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+  </style>
+</head>
+<body class="min-h-screen font-inter text-gray-300" style="background-color: #090A14;">
+
+  <!-- Header / Navbar -->
+  <header class="relative z-50 glass-card border-t-0 border-l-0 border-r-0 sticky top-0 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #DF6B33, #e8834e);">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="font-poppins font-bold text-xl text-white hidden sm:block">ShopFlow</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="home.html" class="nav-link font-inter text-sm font-medium text-gray-400">Home</a>
+        <a href="charts.html" class="nav-link font-inter text-sm font-medium text-gray-400">Dashboard</a>
+        <a href="#" class="nav-link font-inter text-sm font-medium text-gray-400">Products</a>
+        <a href="about.html" class="nav-link font-inter text-sm font-medium text-white">About</a>
+        <a href="contact.html" class="nav-link font-inter text-sm font-medium text-gray-400">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="login.html" class="font-inter text-sm font-medium hidden sm:block" style="color: rgba(255,255,255,0.6);">Sign In</a>
+        <a href="register.html" class="primary-btn font-inter text-sm font-medium text-white px-4 py-2 rounded-xl cursor-pointer">Get Started</a>
+        <button class="md:hidden p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+          <i data-lucide="menu" class="w-5 h-5 text-gray-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Page Header -->
+    <section class="pt-12 pb-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        <div class="animate-fade-in delay-0">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5" style="background: rgba(223,107,51,0.15);">
+            <i data-lucide="building-2" class="w-7 h-7" style="color: #DF6B33;"></i>
+          </div>
+          <h1 class="font-poppins font-extrabold text-3xl sm:text-4xl text-white mb-3">About ShopFlow</h1>
+          <p class="font-inter text-base max-w-2xl mx-auto" style="color: rgba(255,255,255,0.45);">We're on a mission to make premium shopping accessible, enjoyable, and seamless for everyone, everywhere.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="pb-16 sm:pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="animate-fade-in delay-1">
+            <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+              <div class="absolute inset-0 opacity-15" style="background: radial-gradient(circle at 20% 40%, #DF6B33, transparent 60%);"></div>
+              <div class="relative space-y-6">
+                <div class="rounded-2xl p-5" style="background: rgba(223,107,51,0.08); border: 1px solid rgba(223,107,51,0.12);">
+                  <div class="flex items-center gap-3 mb-2">
+                    <i data-lucide="target" class="w-5 h-5" style="color: #DF6B33;"></i>
+                    <span class="font-poppins font-semibold text-white text-sm">Our Mission</span>
+                  </div>
+                  <p class="font-inter text-sm leading-relaxed" style="color: rgba(255,255,255,0.5);">To democratize access to quality products through technology, transparency, and an obsessive focus on customer experience.</p>
+                </div>
+                <div class="rounded-2xl p-5" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.12);">
+                  <div class="flex items-center gap-3 mb-2">
+                    <i data-lucide="eye" class="w-5 h-5" style="color: #818CF8;"></i>
+                    <span class="font-poppins font-semibold text-white text-sm">Our Vision</span>
+                  </div>
+                  <p class="font-inter text-sm leading-relaxed" style="color: rgba(255,255,255,0.5);">To become the world's most trusted e-commerce platform — where every click feels personal and every delivery feels magical.</p>
+                </div>
+                <div class="rounded-2xl p-5" style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.12);">
+                  <div class="flex items-center gap-3 mb-2">
+                    <i data-lucide="heart-handshake" class="w-5 h-5 text-green-400"></i>
+                    <span class="font-poppins font-semibold text-white text-sm">Our Values</span>
+                  </div>
+                  <p class="font-inter text-sm leading-relaxed" style="color: rgba(255,255,255,0.5);">Integrity, innovation, and inclusion. We believe great shopping should be fair, fast, and friction-free for all.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="animate-fade-in delay-2">
+            <h2 class="font-poppins font-extrabold text-2xl sm:text-3xl text-white mb-4">Our Story</h2>
+            <div class="space-y-4">
+              <p class="font-inter text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">
+                ShopFlow was founded in 2019 by a small team of engineers and designers who were frustrated with the fragmented, impersonal online shopping experience. We set out to build something different — a platform where discovery is delightful, checkout is effortless, and every customer feels valued.
+              </p>
+              <p class="font-inter text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">
+                Starting from a single warehouse in San Francisco, we've grown into a global marketplace serving over 50,000 customers across 30 countries. Our curated catalog spans electronics, fashion, home goods, beauty, and more — all rigorously vetted for quality and sustainability.
+              </p>
+              <p class="font-inter text-sm leading-relaxed" style="color: rgba(255,255,255,0.55);">
+                Today, ShopFlow combines cutting-edge AI recommendations, a robust logistics network, and a dedicated support team to deliver an experience that our customers genuinely love. We're just getting started.
+              </p>
+            </div>
+            <div class="flex gap-4 mt-6">
+              <a href="contact.html" class="primary-btn font-inter text-sm font-medium text-white px-6 py-3 rounded-xl cursor-pointer inline-flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                Contact Us
+              </a>
+              <a href="charts.html" class="font-inter text-sm font-medium px-6 py-3 rounded-xl cursor-pointer inline-flex items-center gap-2 border border-white/15 hover:border-white/25 transition-colors" style="color: rgba(255,255,255,0.6);">
+                <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                View Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="glass-card rounded-3xl p-8 sm:p-12 animate-fade-in delay-2">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <p class="font-poppins font-extrabold text-3xl sm:text-4xl text-white mb-1">50K+</p>
+              <p class="font-inter text-sm" style="color: rgba(255,255,255,0.45);">Happy Customers</p>
+            </div>
+            <div>
+              <p class="font-poppins font-extrabold text-3xl sm:text-4xl text-white mb-1">30+</p>
+              <p class="font-inter text-sm" style="color: rgba(255,255,255,0.45);">Countries Served</p>
+            </div>
+            <div>
+              <p class="font-poppins font-extrabold text-3xl sm:text-4xl text-white mb-1">3.2K</p>
+              <p class="font-inter text-sm" style="color: rgba(255,255,255,0.45);">Products Listed</p>
+            </div>
+            <div>
+              <p class="font-poppins font-extrabold text-3xl sm:text-4xl text-white mb-1">99.8%</p>
+              <p class="font-inter text-sm" style="color: rgba(255,255,255,0.45);">Satisfaction Rate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-16 sm:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 animate-fade-in delay-0">
+          <h2 class="font-poppins font-extrabold text-2xl sm:text-3xl text-white">Our Journey</h2>
+          <p class="font-inter text-sm mt-2" style="color: rgba(255,255,255,0.45);">Key milestones along the way</p>
+        </div>
+        <div class="max-w-2xl mx-auto">
+          <div class="relative">
+            <div class="absolute left-5 top-0 bottom-0 w-px" style="background: linear-gradient(to bottom, rgba(223,107,51,0.3), rgba(223,107,51,0.05));"></div>
+            <div class="space-y-8">
+              <div class="flex gap-6 items-start animate-fade-in delay-1">
+                <div class="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background: #DF6B33;">
+                  <i data-lucide="flag" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="glass-card rounded-2xl p-5 flex-1">
+                  <p class="font-poppins font-semibold text-white text-sm">2019 — Launch</p>
+                  <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">ShopFlow launched with 200 products and a team of 12 people in San Francisco.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start animate-fade-in delay-2">
+                <div class="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(223,107,51,0.6);">
+                  <i data-lucide="globe" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="glass-card rounded-2xl p-5 flex-1">
+                  <p class="font-poppins font-semibold text-white text-sm">2020 — Global Expansion</p>
+                  <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Expanded to 15 countries and launched our mobile app for iOS and Android.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start animate-fade-in delay-3">
+                <div class="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(223,107,51,0.5);">
+                  <i data-lucide="cpu" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="glass-card rounded-2xl p-5 flex-1">
+                  <p class="font-poppins font-semibold text-white text-sm">2022 — AI Recommendations</p>
+                  <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Introduced AI-powered product recommendations, increasing conversion by 34%.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start animate-fade-in delay-4">
+                <div class="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(223,107,51,0.4);">
+                  <i data-lucide="truck" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="glass-card rounded-2xl p-5 flex-1">
+                  <p class="font-poppins font-semibold text-white text-sm">2024 — Next-Day Delivery</p>
+                  <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Rolled out next-day delivery in major metro areas across the US and Europe.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start animate-fade-in delay-5">
+                <div class="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(223,107,51,0.3); border: 2px solid rgba(223,107,51,0.5);">
+                  <i data-lucide="sparkles" class="w-4 h-4" style="color: #DF6B33;"></i>
+                </div>
+                <div class="glass-card rounded-2xl p-5 flex-1" style="border-color: rgba(223,107,51,0.2);">
+                  <p class="font-poppins font-semibold text-white text-sm">2026 — Today</p>
+                  <p class="font-inter text-xs mt-1" style="color: rgba(255,255,255,0.4);">Serving 50,000+ customers in 30+ countries with 3,200+ products and counting.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-16 sm:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 animate-fade-in delay-0">
+          <h2 class="font-poppins font-extrabold text-2xl sm:text-3xl text-white">Meet the Team</h2>
+          <p class="font-inter text-sm mt-2" style="color: rgba(255,255,255,0.45);">The people behind the platform</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div class="team-card glass-card rounded-2xl p-5 text-center transition-all duration-200 animate-fade-in delay-1">
+            <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl font-poppins font-bold" style="background: rgba(223,107,51,0.15); color: #DF6B33;">AK</div>
+            <p class="font-poppins font-semibold text-white text-sm">Alex Kim</p>
+            <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">CEO & Co-Founder</p>
+          </div>
+          <div class="team-card glass-card rounded-2xl p-5 text-center transition-all duration-200 animate-fade-in delay-2">
+            <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl font-poppins font-bold" style="background: rgba(99,102,241,0.15); color: #818CF8;">SR</div>
+            <p class="font-poppins font-semibold text-white text-sm">Sarah Ross</p>
+            <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">CTO & Co-Founder</p>
+          </div>
+          <div class="team-card glass-card rounded-2xl p-5 text-center transition-all duration-200 animate-fade-in delay-3">
+            <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl font-poppins font-bold" style="background: rgba(16,185,129,0.15); color: #10B981;">MJ</div>
+            <p class="font-poppins font-semibold text-white text-sm">Marcus Johnson</p>
+            <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">Head of Design</p>
+          </div>
+          <div class="team-card glass-card rounded-2xl p-5 text-center transition-all duration-200 animate-fade-in delay-4">
+            <div class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl font-poppins font-bold" style="background: rgba(245,158,11,0.15); color: #F59E0B;">LP</div>
+            <p class="font-poppins font-semibold text-white text-sm">Lisa Park</p>
+            <p class="font-inter text-xs mt-0.5" style="color: rgba(255,255,255,0.4);">Head of Operations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="pb-16 sm:pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="glass-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden animate-fade-in delay-2">
+          <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 50% 50%, #DF6B33, transparent 70%);"></div>
+          <div class="relative">
+            <i data-lucide="rocket" class="w-10 h-10 mx-auto mb-4" style="color: #DF6B33;"></i>
+            <h2 class="font-poppins font-extrabold text-2xl sm:text-3xl text-white mb-3">Ready to get started?</h2>
+            <p class="font-inter text-sm mb-8 max-w-lg mx-auto" style="color: rgba(255,255,255,0.45);">Join thousands of happy customers who trust ShopFlow for their everyday shopping needs.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a href="register.html" class="primary-btn font-poppins font-semibold text-white px-8 py-3.5 rounded-xl text-sm cursor-pointer">Create Free Account</a>
+              <a href="contact.html" class="font-inter text-sm font-medium px-8 py-3.5 rounded-xl cursor-pointer border border-white/15 hover:border-white/25 transition-colors" style="color: rgba(255,255,255,0.6);">Get in Touch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #DF6B33, #e8834e);">
+              <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="font-poppins font-bold text-xl text-white">ShopFlow</span>
+          </div>
+          <p class="font-inter text-sm leading-relaxed mb-4" style="color: rgba(255,255,255,0.4);">Your trusted e-commerce platform for premium products, fast delivery, and seamless shopping experience.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/25 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#e2e8f0">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.213 5.567 5.951-5.567zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/25 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/25 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#e2e8f0">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-poppins font-semibold text-white text-sm mb-4">Shop</h4>
+          <div class="space-y-2.5">
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">All Products</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">New Arrivals</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Best Sellers</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Categories</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-poppins font-semibold text-white text-sm mb-4">Company</h4>
+          <div class="space-y-2.5">
+            <a href="about.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">About Us</a>
+            <a href="contact.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Contact</a>
+            <a href="charts.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Dashboard</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Careers</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-poppins font-semibold text-white text-sm mb-4">Account</h4>
+          <div class="space-y-2.5">
+            <a href="login.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Sign In</a>
+            <a href="register.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Register</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">My Orders</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Wishlist</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <p class="font-inter text-xs" style="color: rgba(255,255,255,0.25);">2026 ShopFlow. All rights reserved.</p>
+        <div class="flex gap-5">
+          <a href="#" class="font-inter text-xs hover:underline" style="color: rgba(255,255,255,0.25);">Privacy Policy</a>
+          <a href="#" class="font-inter text-xs hover:underline" style="color: rgba(255,255,255,0.25);">Terms of Service</a>
+          <a href="#" class="font-inter text-xs hover:underline" style="color: rgba(255,255,255,0.25);">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

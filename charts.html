@@ -41,9 +41,10 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
     .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; }
-    .tab-btn { transition: all 0.2s ease; color: rgba(255,255,255,0.45); border-bottom: 2px solid transparent; padding-bottom: 8px; }
+    .tab-btn { transition: all 0.2s ease; color: rgba(255,255,255,0.45); border-bottom: 2px solid transparent; }
     .tab-btn.active { color: #DF6B33; border-bottom-color: #DF6B33; }
     .tab-btn:hover:not(.active) { color: rgba(255,255,255,0.7); }
+    .rank-badge { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:700; font-size:13px; }
   </style>
 </head>
 <body class="min-h-screen font-inter text-gray-300" style="background-color: #090A14;">
@@ -83,6 +84,14 @@
       <p class="font-inter text-sm mt-1" style="color: rgba(255,255,255,0.45);">E-Commerce Performance Overview — Q1 2026</p>
     </div>
 
+    <!-- Tab Navigation -->
+    <div class="flex items-center gap-1 mb-6 animate-fade-in delay-0">
+      <button class="tab-btn active font-poppins text-sm font-medium cursor-pointer px-4 py-2" onclick="switchPageTab(this,'overview')">Overview</button>
+      <button class="tab-btn font-poppins text-sm font-medium cursor-pointer px-4 py-2" onclick="switchPageTab(this,'rankings')">Sales Rankings</button>
+    </div>
+
+    <!-- Overview Section -->
+    <div id="section-overview" class="space-y-6">
     <!-- KPI Cards -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-1">
@@ -347,6 +356,185 @@
         </div>
       </div>
     </div>
+    </div><!-- end overview section -->
+
+    <!-- Rankings Section -->
+    <div id="section-rankings" class="space-y-6" style="display:none;">
+      <!-- Top Employees KPI -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-1">
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(223,107,51,0.15);">
+              <i data-lucide="users" class="w-5 h-5" style="color:#DF6B33;"></i>
+            </div>
+            <span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+5</span>
+          </div>
+          <p class="font-poppins font-bold text-xl text-white">48</p>
+          <p class="font-inter text-xs mt-1" style="color:rgba(255,255,255,0.4);">Active Sales Reps</p>
+        </div>
+        <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-1">
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,0.15);">
+              <i data-lucide="trophy" class="w-5 h-5 text-green-400"></i>
+            </div>
+            <span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">New</span>
+          </div>
+          <p class="font-poppins font-bold text-xl text-white">12</p>
+          <p class="font-inter text-xs mt-1" style="color:rgba(255,255,255,0.4);">New Stars This Quarter</p>
+        </div>
+        <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-2">
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,0.15);">
+              <i data-lucide="target" class="w-5 h-5 text-yellow-400"></i>
+            </div>
+          </div>
+          <p class="font-poppins font-bold text-xl text-white">82%</p>
+          <p class="font-inter text-xs mt-1" style="color:rgba(255,255,255,0.4);">Avg Target Achieved</p>
+        </div>
+        <div class="glass-card rounded-2xl p-5 stat-card animate-fade-in delay-2">
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(99,102,241,0.15);">
+              <i data-lucide="star" class="w-5 h-5" style="color:#818CF8;"></i>
+            </div>
+          </div>
+          <p class="font-poppins font-bold text-xl text-white">$284,560</p>
+          <p class="font-inter text-xs mt-1" style="color:rgba(255,255,255,0.4);">Total Team Revenue</p>
+        </div>
+      </div>
+
+      <!-- Top 10 Employees Table -->
+      <div class="glass-card rounded-2xl p-6 animate-fade-in delay-3">
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div>
+            <h3 class="font-poppins font-semibold text-white text-lg">Top 10 Sales Representatives</h3>
+            <p class="font-inter text-xs mt-0.5" style="color:rgba(255,255,255,0.4);">Best performing sales employees this quarter</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <select class="font-inter text-xs bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-gray-400 outline-none cursor-pointer" style="appearance:none;">
+              <option>Q1 2026</option><option>Q4 2025</option><option>Q3 2025</option><option>Q2 2025</option>
+            </select>
+            <button class="primary-btn font-inter text-xs text-white px-4 py-2 rounded-lg cursor-pointer">Export</button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+                <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Rank</th>
+                <th class="font-inter text-xs font-medium text-left pb-3" style="color:rgba(255,255,255,0.4);">Sales Rep</th>
+                <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Revenue</th>
+                <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Orders</th>
+                <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Target</th>
+                <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Achievement</th>
+                <th class="font-inter text-xs font-medium text-right pb-3" style="color:rgba(255,255,255,0.4);">Trend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- #1 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><div class="w-8 h-8 rounded-full flex items-center justify-center font-poppins font-bold text-sm" style="background:linear-gradient(135deg,#FBBF24,#F59E0B);color:#1a1a2e;">1</div></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(251,191,36,0.15);color:#FBBF24;">JW</div><div><p class="font-inter text-sm font-medium text-white">James Wilson</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">North America</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$32,480</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">412</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$28,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">116%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+18%</span></td>
+              </tr>
+              <!-- #2 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><div class="w-8 h-8 rounded-full flex items-center justify-center font-poppins font-bold text-sm" style="background:rgba(192,192,192,0.2);color:#C0C0C0;">2</div></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(192,192,192,0.15);color:#C0C0C0;">AL</div><div><p class="font-inter text-sm font-medium text-white">Anna Lee</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Europe</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$29,150</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">368</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$27,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">108%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+12%</span></td>
+              </tr>
+              <!-- #3 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><div class="w-8 h-8 rounded-full flex items-center justify-center font-poppins font-bold text-sm" style="background:rgba(205,127,50,0.2);color:#CD7F32;">3</div></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(205,127,50,0.15);color:#CD7F32;">MJ</div><div><p class="font-inter text-sm font-medium text-white">Marcus Johnson</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">North America</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$27,840</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">341</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$26,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">107%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+24%</span></td>
+              </tr>
+              <!-- #4 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">4</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(99,102,241,0.15);color:#818CF8;">SC</div><div><p class="font-inter text-sm font-medium text-white">Sophie Chen</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Asia Pacific</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$24,960</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">308</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$24,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">104%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+8%</span></td>
+              </tr>
+              <!-- #5 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">5</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(16,185,129,0.15);color:#34D399;">DK</div><div><p class="font-inter text-sm font-medium text-white">David Kim</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Europe</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$23,520</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">285</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$23,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">102%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+15%</span></td>
+              </tr>
+              <!-- #6 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">6</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(245,158,11,0.15);color:#FBBF24;">EP</div><div><p class="font-inter text-sm font-medium text-white">Elena Petrov</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Latin America</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$21,840</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">264</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$22,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">99%</span></td>
+                <td class="py-4 text-right"><span class="badge text-red-400" style="background:rgba(239,68,68,0.12);">-3%</span></td>
+              </tr>
+              <!-- #7 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">7</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(223,107,51,0.15);color:#DF6B33;">TM</div><div><p class="font-inter text-sm font-medium text-white">Tom Miller</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">North America</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$20,160</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">248</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$21,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">96%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+5%</span></td>
+              </tr>
+              <!-- #8 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">8</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(168,85,247,0.15);color:#A855F7;">LN</div><div><p class="font-inter text-sm font-medium text-white">Lisa Nguyen</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Asia Pacific</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$19,420</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">231</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$20,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">97%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+9%</span></td>
+              </tr>
+              <!-- #9 -->
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);" class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">9</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(14,165,233,0.15);color:#60A5FA;">RS</div><div><p class="font-inter text-sm font-medium text-white">Ryan Santos</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Latin America</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$18,480</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">218</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$19,500</span></td>
+                <td class="py-4 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">95%</span></td>
+                <td class="py-4 text-right"><span class="badge text-green-400" style="background:rgba(34,197,94,0.12);">+7%</span></td>
+              </tr>
+              <!-- #10 -->
+              <tr class="hover:bg-white/3 transition-colors">
+                <td class="py-4"><span class="font-inter text-sm font-medium" style="color:rgba(255,255,255,0.4);">10</span></td>
+                <td class="py-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-semibold" style="background:rgba(239,68,68,0.15);color:#F87171;">MK</div><div><p class="font-inter text-sm font-medium text-white">Maria Kowalski</p><p class="font-inter text-xs" style="color:rgba(255,255,255,0.35);">Europe</p></div></div></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm font-semibold text-white">$17,280</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.7);">198</span></td>
+                <td class="py-4 text-right"><span class="font-inter text-sm" style="color:rgba(255,255,255,0.5);">$18,000</span></td>
+                <td class="py-4 text-right"><span class="badge text-yellow-400" style="background:rgba(234,179,8,0.12);">96%</span></td>
+                <td class="py-4 text-right"><span class="badge text-red-400" style="background:rgba(239,68,68,0.12);">-1%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- end rankings section -->
   </main>
 
   <!-- Footer -->
@@ -375,6 +563,17 @@
     const { ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Line, PieChart, Pie, Cell, BarChart, AreaChart, Area } = Recharts;
 
     lucide.createIcons();
+
+    // Tab switching
+    window.switchPageTab = function(el, tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('section-overview').style.display = tab === 'overview' ? '' : 'none';
+      document.getElementById('section-rankings').style.display = tab === 'rankings' ? '' : 'none';
+      if (tab === 'rankings') {
+        lucide.createIcons();
+      }
+    };
 
     // Mock Data
     const monthlyRevenue = [

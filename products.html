@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — ShopFlow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { surface: '#090A14', primary: '#DF6B33' },
+          fontFamily: { poppins: ['Poppins', 'sans-serif'], inter: ['Inter', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #090A14; }
+    .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); }
+    .primary-btn { background: #DF6B33; transition: all 0.25s ease; }
+    .primary-btn:hover { background: #c85d2a; box-shadow: 0 0 28px rgba(223,107,51,0.35); transform: translateY(-1px); }
+    .primary-btn:active { transform: translateY(0); }
+    .nav-link { transition: color 0.2s ease; }
+    .nav-link:hover { color: #DF6B33; }
+    .product-card { transition: all 0.3s ease; }
+    .product-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .filter-btn { transition: all 0.2s ease; }
+    .filter-btn:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+    .filter-btn.active { border-color: #DF6B33; background: rgba(223,107,51,0.1); color: #DF6B33; }
+    .category-pill { transition: all 0.2s ease; }
+    .category-pill:hover { border-color: rgba(255,255,255,0.2); }
+    .category-pill.active { border-color: #DF6B33; background: rgba(223,107,51,0.12); color: #DF6B33; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .animate-fade-in { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+    .delay-0 { animation-delay: 0.05s; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; }
+  </style>
+</head>
+<body class="min-h-screen font-inter text-gray-300" style="background-color: #090A14;">
+
+  <!-- Header / Navbar -->
+  <header class="relative z-50 glass-card border-t-0 border-l-0 border-r-0 sticky top-0 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #DF6B33, #e8834e);">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="font-poppins font-bold text-xl text-white hidden sm:block">ShopFlow</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="home.html" class="nav-link font-inter text-sm font-medium text-gray-400">Home</a>
+        <a href="charts.html" class="nav-link font-inter text-sm font-medium text-gray-400">Dashboard</a>
+        <a href="products.html" class="nav-link font-inter text-sm font-medium text-white">Products</a>
+        <a href="about.html" class="nav-link font-inter text-sm font-medium text-gray-400">About</a>
+        <a href="contact.html" class="nav-link font-inter text-sm font-medium text-gray-400">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer relative">
+          <i data-lucide="shopping-cart" class="w-5 h-5 text-gray-400"></i>
+          <span class="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-[9px] font-bold flex items-center justify-center text-white" style="background:#DF6B33;">2</span>
+        </button>
+        <a href="login.html" class="font-inter text-sm font-medium hidden sm:block" style="color: rgba(255,255,255,0.6);">Sign In</a>
+        <a href="register.html" class="primary-btn font-inter text-sm font-medium text-white px-4 py-2 rounded-xl cursor-pointer">Get Started</a>
+        <button class="md:hidden p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
+          <i data-lucide="menu" class="w-5 h-5 text-gray-400"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Page Header -->
+    <section class="pt-10 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="animate-fade-in delay-0">
+          <h1 class="font-poppins font-extrabold text-2xl sm:text-3xl text-white">All Products</h1>
+          <p class="font-inter text-sm mt-1" style="color: rgba(255,255,255,0.45);">Browse our curated collection of 3,200+ premium products</p>
+        </div>
+        <!-- Category Pills -->
+        <div class="flex flex-wrap gap-2 mt-5 animate-fade-in delay-1">
+          <button class="category-pill active font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'all')">All Products</button>
+          <button class="category-pill font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'electronics')">Electronics</button>
+          <button class="category-pill font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'fashion')">Fashion</button>
+          <button class="category-pill font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'home')">Home & Living</button>
+          <button class="category-pill font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'beauty')">Beauty</button>
+          <button class="category-pill font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'gaming')">Gaming</button>
+          <button class="category-pill font-inter text-sm px-4 py-2 rounded-xl border border-white/10 cursor-pointer" onclick="filterCategory(this, 'health')">Health</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products + Sidebar -->
+    <section class="pb-16 sm:pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+          <!-- Filter Sidebar -->
+          <div class="space-y-4 animate-fade-in delay-1">
+
+            <!-- Price Range -->
+            <div class="glass-card rounded-2xl p-5">
+              <h3 class="font-poppins font-semibold text-white text-sm mb-4 flex items-center gap-2">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4" style="color: #DF6B33;"></i>
+                Filters
+              </h3>
+
+              <div class="mb-5">
+                <p class="font-inter text-xs font-medium text-gray-300 mb-3">Price Range</p>
+                <div class="space-y-2">
+                  <button class="filter-btn active w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer" onclick="filterPrice(this, 'all')">All Prices</button>
+                  <button class="filter-btn w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer" onclick="filterPrice(this, 'under50')">Under $50</button>
+                  <button class="filter-btn w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer" onclick="filterPrice(this, '50to100')">$50 — $100</button>
+                  <button class="filter-btn w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer" onclick="filterPrice(this, '100to200')">$100 — $200</button>
+                  <button class="filter-btn w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer" onclick="filterPrice(this, 'above200')">Above $200</button>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid rgba(255,255,255,0.06);"></div>
+
+              <!-- Rating -->
+              <div class="mt-5">
+                <p class="font-inter text-xs font-medium text-gray-300 mb-3">Rating</p>
+                <div class="space-y-2">
+                  <button class="filter-btn active w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer flex items-center gap-2" onclick="filterRating(this, 'all')">
+                    <span class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i></span>
+                    <span>All</span>
+                  </button>
+                  <button class="filter-btn w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer flex items-center gap-2" onclick="filterRating(this, '4')">
+                    <span class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 text-gray-600"></i></span>
+                    <span>& Up</span>
+                  </button>
+                  <button class="filter-btn w-full text-left font-inter text-xs px-3 py-2 rounded-lg border border-white/10 cursor-pointer flex items-center gap-2" onclick="filterRating(this, '3')">
+                    <span class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i><i data-lucide="star" class="w-3 h-3 text-gray-600"></i><i data-lucide="star" class="w-3 h-3 text-gray-600"></i></span>
+                    <span>& Up</span>
+                  </button>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid rgba(255,255,255,0.06);"></div>
+
+              <!-- Availability -->
+              <div class="mt-5">
+                <p class="font-inter text-xs font-medium text-gray-300 mb-3">Availability</p>
+                <label class="flex items-center gap-2.5 cursor-pointer mb-2">
+                  <div class="relative">
+                    <input type="checkbox" checked class="sr-only peer" />
+                    <div class="w-5 h-5 border border-white/20 rounded-md peer-checked:border-primary peer-checked:bg-primary/20 transition-all duration-200 flex items-center justify-center cursor-pointer"
+                         onclick="this.parentElement.querySelector('input').click(); this.classList.toggle('border-primary'); this.classList.toggle('bg-primary/20')">
+                      <i data-lucide="check" class="w-3 h-3 text-primary opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                    </div>
+                  </div>
+                  <span class="font-inter text-xs" style="color: rgba(255,255,255,0.6);">In Stock Only</span>
+                </label>
+              </div>
+
+              <div style="border-top: 1px solid rgba(255,255,255,0.06);"></div>
+
+              <!-- Brand -->
+              <div class="mt-5">
+                <p class="font-inter text-xs font-medium text-gray-300 mb-3">Brand</p>
+                <div class="space-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" checked class="accent-primary" style="accent-color: #DF6B33;" />
+                    <span class="font-inter text-xs" style="color: rgba(255,255,255,0.5);">ProX Series</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="accent-primary" style="accent-color: #DF6B33;" />
+                    <span class="font-inter text-xs" style="color: rgba(255,255,255,0.5);">ChronoFit</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="accent-primary" style="accent-color: #DF6B33;" />
+                    <span class="font-inter text-xs" style="color: rgba(255,255,255,0.5);">Nordic Home</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="accent-primary" style="accent-color: #DF6B33;" />
+                    <span class="font-inter text-xs" style="color: rgba(255,255,255,0.5);">Urban Wear</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Promo Card -->
+            <div class="glass-card rounded-2xl p-5 text-center" style="background: rgba(223,107,51,0.06); border-color: rgba(223,107,51,0.15);">
+              <div class="w-10 h-10 rounded-xl mx-auto mb-3 flex items-center justify-center" style="background: rgba(223,107,51,0.15);">
+                <i data-lucide="percent" class="w-5 h-5" style="color: #DF6B33;"></i>
+              </div>
+              <h4 class="font-poppins font-semibold text-white text-sm mb-1">Member Exclusive</h4>
+              <p class="font-inter text-xs mb-3" style="color: rgba(255,255,255,0.4);">Get up to 30% off with a free account.</p>
+              <a href="register.html" class="primary-btn font-inter text-xs font-medium text-white py-2 px-4 rounded-xl cursor-pointer block w-full text-center">Sign Up Free</a>
+            </div>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="lg:col-span-3">
+
+            <!-- Sort Bar -->
+            <div class="flex items-center justify-between mb-5 animate-fade-in delay-1 flex-wrap gap-3">
+              <p class="font-inter text-sm" style="color: rgba(255,255,255,0.45);">Showing <span class="text-white font-medium" id="product-count">16</span> products</p>
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                  <button class="p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer" onclick="setView('grid')" id="view-grid">
+                    <i data-lucide="layout-grid" class="w-4 h-4" style="color: #DF6B33;"></i>
+                  </button>
+                  <button class="p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer" onclick="setView('list')" id="view-list">
+                    <i data-lucide="list" class="w-4 h-4 text-gray-500"></i>
+                  </button>
+                </div>
+                <select id="sort-select" class="font-inter text-xs bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-gray-400 outline-none cursor-pointer" style="appearance:none;" onchange="sortProducts(this.value)">
+                  <option value="popular">Sort by: Popular</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="newest">Newest First</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4 animate-fade-in delay-2">
+              <!-- Products will be rendered by JS -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-center mt-8 animate-fade-in delay-3">
+              <div class="flex items-center gap-1">
+                <button class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white/5 transition-colors cursor-pointer">
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button class="w-9 h-9 rounded-lg flex items-center justify-center cursor-pointer" style="background:rgba(223,107,51,0.15);color:#DF6B33;">1</button>
+                <button class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:bg-white/5 transition-colors cursor-pointer">2</button>
+                <button class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:bg-white/5 transition-colors cursor-pointer">3</button>
+                <span class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-600">...</span>
+                <button class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:bg-white/5 transition-colors cursor-pointer">8</button>
+                <button class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:bg-white/5 transition-colors cursor-pointer">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #DF6B33, #e8834e);">
+              <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="font-poppins font-bold text-xl text-white">ShopFlow</span>
+          </div>
+          <p class="font-inter text-sm leading-relaxed mb-4" style="color: rgba(255,255,255,0.4);">Your trusted e-commerce platform for premium products, fast delivery, and seamless shopping experience.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/25 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#e2e8f0">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.213 5.567 5.951-5.567zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/25 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 hover:border-white/25 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#e2e8f0">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-poppins font-semibold text-white text-sm mb-4">Shop</h4>
+          <div class="space-y-2.5">
+            <a href="products.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">All Products</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">New Arrivals</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Best Sellers</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Categories</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-poppins font-semibold text-white text-sm mb-4">Company</h4>
+          <div class="space-y-2.5">
+            <a href="about.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">About Us</a>
+            <a href="contact.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Contact</a>
+            <a href="charts.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Dashboard</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Careers</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-poppins font-semibold text-white text-sm mb-4">Account</h4>
+          <div class="space-y-2.5">
+            <a href="login.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Sign In</a>
+            <a href="register.html" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Register</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">My Orders</a>
+            <a href="#" class="block font-inter text-sm cursor-pointer" style="color: rgba(255,255,255,0.4);">Wishlist</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <p class="font-inter text-xs" style="color: rgba(255,255,255,0.25);">2026 ShopFlow. All rights reserved.</p>
+        <div class="flex gap-5">
+          <a href="#" class="font-inter text-xs hover:underline" style="color: rgba(255,255,255,0.25);">Privacy Policy</a>
+          <a href="#" class="font-inter text-xs hover:underline" style="color: rgba(255,255,255,0.25);">Terms of Service</a>
+          <a href="#" class="font-inter text-xs hover:underline" style="color: rgba(255,255,255,0.25);">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Product data
+    const allProducts = [
+      { id: 1, name: 'ProX Wireless Earbuds', category: 'electronics', price: 129.99, originalPrice: 159.99, rating: 4.8, reviews: 2341, badge: '-20%', badgeColor: 'green', icon: 'smartphone', color: '#818CF8', bg: 'rgba(99,102,241,0.08)', sold: 1245, inStock: true },
+      { id: 2, name: 'Urban Jacket v3', category: 'fashion', price: 89.00, originalPrice: null, rating: 4.6, reviews: 892, badge: 'New', badgeColor: 'green', icon: 'shirt', color: '#DF6B33', bg: 'rgba(223,107,51,0.08)', sold: 892, inStock: true },
+      { id: 3, name: 'Nordic Desk Lamp', category: 'home', price: 64.99, originalPrice: null, rating: 4.9, reviews: 612, badge: 'Hot', badgeColor: 'yellow', icon: 'lamp', color: '#34D399', bg: 'rgba(16,185,129,0.08)', sold: 780, inStock: true },
+      { id: 4, name: 'ChronoFit Watch S2', category: 'electronics', price: 199.00, originalPrice: 234.00, rating: 4.7, reviews: 398, badge: '-15%', badgeColor: 'red', icon: 'watch', color: '#FBBF24', bg: 'rgba(245,158,11,0.08)', sold: 412, inStock: true },
+      { id: 5, name: 'CityBack Pro 25L', category: 'fashion', price: 74.99, originalPrice: null, rating: 4.5, reviews: 567, badge: null, badgeColor: null, icon: 'backpack', color: '#A855F7', bg: 'rgba(168,85,247,0.08)', sold: 620, inStock: true },
+      { id: 6, name: 'Glow Serum Plus', category: 'beauty', price: 42.50, originalPrice: 55.00, rating: 4.4, reviews: 1082, badge: '-23%', badgeColor: 'green', icon: 'sparkles', color: '#F472B6', bg: 'rgba(244,114,182,0.08)', sold: 1580, inStock: true },
+      { id: 7, name: 'SoundCore Max Headphones', category: 'electronics', price: 179.00, originalPrice: 219.00, rating: 4.6, reviews: 1567, badge: '-18%', badgeColor: 'green', icon: 'headphones', color: '#60A5FA', bg: 'rgba(96,165,250,0.08)', sold: 890, inStock: false },
+      { id: 8, name: 'Yoga Mat Premium', category: 'health', price: 38.00, originalPrice: null, rating: 4.7, reviews: 2104, badge: null, badgeColor: null, icon: 'heart-pulse', color: '#34D399', bg: 'rgba(16,185,129,0.08)', sold: 3200, inStock: true },
+      { id: 9, name: 'Mechanical Keyboard K7', category: 'gaming', price: 129.00, originalPrice: 159.00, rating: 4.8, reviews: 890, badge: '-19%', badgeColor: 'green', icon: 'gamepad-2', color: '#F87171', bg: 'rgba(248,113,113,0.08)', sold: 560, inStock: true },
+      { id: 10, name: 'Ceramic Plant Pot Set', category: 'home', price: 29.99, originalPrice: null, rating: 4.3, reviews: 445, badge: null, badgeColor: null, icon: 'flower-2', color: '#34D399', bg: 'rgba(16,185,129,0.08)', sold: 1200, inStock: true },
+      { id: 11, name: 'Velvet Throw Pillow', category: 'home', price: 24.99, originalPrice: 34.99, rating: 4.5, reviews: 678, badge: '-29%', badgeColor: 'green', icon: 'square', color: '#F59E0B', bg: 'rgba(245,158,11,0.08)', sold: 890, inStock: true },
+      { id: 12, name: 'Smart LED Desk Light', category: 'electronics', price: 45.00, originalPrice: null, rating: 4.6, reviews: 324, badge: null, badgeColor: null, icon: 'sun', color: '#FBBF24', bg: 'rgba(251,191,36,0.08)', sold: 480, inStock: true },
+      { id: 13, name: 'Canvas Sneakers Pro', category: 'fashion', price: 55.00, originalPrice: 70.00, rating: 4.4, reviews: 1203, badge: '-21%', badgeColor: 'green', icon: 'footprints', color: '#818CF8', bg: 'rgba(99,102,241,0.08)', sold: 2100, inStock: true },
+      { id: 14, name: 'Retinol Night Cream', category: 'beauty', price: 36.00, originalPrice: null, rating: 4.7, reviews: 1876, badge: 'New', badgeColor: 'green', icon: 'droplets', color: '#F472B6', bg: 'rgba(244,114,182,0.08)', sold: 2400, inStock: true },
+      { id: 15, name: 'Ergonomic Office Chair', category: 'home', price: 249.00, originalPrice: 299.00, rating: 4.9, reviews: 534, badge: '-17%', badgeColor: 'green', icon: 'armchair', color: '#60A5FA', bg: 'rgba(96,165,250,0.08)', sold: 320, inStock: true },
+      { id: 16, name: 'Gaming Mouse Pro X', category: 'gaming', price: 79.00, originalPrice: null, rating: 4.7, reviews: 723, badge: null, badgeColor: null, icon: 'mouse-pointer-2', color: '#A855F7', bg: 'rgba(168,85,247,0.08)', sold: 1100, inStock: true },
+    ];
+
+    let currentCategory = 'all';
+    let currentPrice = 'all';
+    let currentRating = 'all';
+    let currentSort = 'popular';
+    let viewMode = 'grid';
+
+    function getBadgeStyle(badge, badgeColor) {
+      if (!badge) return '';
+      const colors = {
+        green: 'color: rgba(34,197,94,1); background: rgba(34,197,94,0.12);',
+        yellow: 'color: rgba(234,179,8,1); background: rgba(234,179,8,0.12);',
+        red: 'color: rgba(239,68,68,1); background: rgba(239,68,68,0.12);',
+      };
+      return colors[badgeColor] || colors.green;
+    }
+
+    function getStars(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.5;
+      const empty = 5 - full - (half ? 1 : 0);
+      let html = '';
+      for (let i = 0; i < full; i++) html += '<i data-lucide="star" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i>';
+      if (half) html += '<i data-lucide="star-half" class="w-3 h-3 fill-yellow-400 text-yellow-400"></i>';
+      for (let i = 0; i < empty; i++) html += '<i data-lucide="star" class="w-3 h-3 text-gray-600"></i>';
+      return html;
+    }
+
+    function renderProducts(products) {
+      const grid = document.getElementById('product-grid');
+      document.getElementById('product-count').textContent = products.length;
+
+      if (products.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-16">
+          <i data-lucide="package-x" class="w-12 h-12 mx-auto mb-4" style="color:rgba(255,255,255,0.2);"></i>
+          <p class="font-poppins font-semibold text-white mb-1">No products found</p>
+          <p class="font-inter text-sm" style="color:rgba(255,255,255,0.4);">Try adjusting your filters or search terms.</p>
+        </div>`;
+        lucide.createIcons();
+        return;
+      }
+
+      grid.className = viewMode === 'grid'
+        ? 'grid grid-cols-2 md:grid-cols-3 gap-4 animate-fade-in delay-2'
+        : 'grid grid-cols-1 gap-3 animate-fade-in delay-2';
+
+      grid.innerHTML = products.map(p => {
+        const badgeStyle = getBadgeStyle(p.badge, p.badgeColor);
+        const stockLabel = p.inStock
+          ? `<span class="font-inter text-xs text-green-400">In Stock</span>`
+          : `<span class="font-inter text-xs text-red-400">Out of Stock</span>`;
+        const originalPriceHtml = p.originalPrice
+          ? `<span class="font-inter text-xs line-through" style="color: rgba(255,255,255,0.3);">$${p.originalPrice.toFixed(2)}</span>`
+          : '';
+        const outStockOverlay = !p.inStock ? 'opacity-50 pointer-events-none' : '';
+
+        if (viewMode === 'grid') {
+          return `<div class="product-card glass-card rounded-2xl p-4 cursor-pointer ${outStockOverlay}" onclick="addToCart(${p.id})">
+            <div class="relative mb-3">
+              <div class="w-full aspect-square rounded-xl flex items-center justify-center" style="background:${p.bg};">
+                <i data-lucide="${p.icon}" class="w-14 h-14" style="color:${p.color};"></i>
+              </div>
+              ${p.badge ? `<span class="badge absolute top-2 left-2" style="${badgeStyle}">${p.badge}</span>` : ''}
+              <button class="absolute top-2 right-2 w-7 h-7 rounded-lg flex items-center justify-center glass-card cursor-pointer hover:bg-white/10 transition-colors" onclick="event.stopPropagation(); toggleWishlist(${p.id})">
+                <i data-lucide="heart" class="w-3.5 h-3.5 text-gray-400"></i>
+              </button>
+            </div>
+            <p class="font-inter text-xs mb-1 capitalize" style="color: rgba(255,255,255,0.35);">${p.category}</p>
+            <p class="font-poppins font-semibold text-sm text-white leading-tight mb-1">${p.name}</p>
+            <div class="flex items-center gap-1 mb-2">
+              <div class="flex">${getStars(p.rating)}</div>
+              <span class="font-inter text-xs" style="color:rgba(255,255,255,0.4);">${p.rating} (${p.reviews.toLocaleString()})</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="font-poppins font-bold text-base" style="color:#DF6B33;">$${p.price.toFixed(2)}</span>
+                ${originalPriceHtml}
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              ${stockLabel}
+              <span class="font-inter text-xs" style="color:rgba(255,255,255,0.3);">${p.sold.toLocaleString()} sold</span>
+            </div>
+          </div>`;
+        } else {
+          return `<div class="product-card glass-card rounded-2xl p-4 cursor-pointer flex gap-4 ${outStockOverlay}" onclick="addToCart(${p.id})">
+            <div class="relative flex-shrink-0">
+              <div class="w-24 h-24 rounded-xl flex items-center justify-center" style="background:${p.bg};">
+                <i data-lucide="${p.icon}" class="w-10 h-10" style="color:${p.color};"></i>
+              </div>
+              ${p.badge ? `<span class="badge absolute -top-1 -left-1" style="${badgeStyle}">${p.badge}</span>` : ''}
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-inter text-xs mb-0.5 capitalize" style="color:rgba(255,255,255,0.35);">${p.category}</p>
+              <p class="font-poppins font-semibold text-sm text-white leading-tight mb-1">${p.name}</p>
+              <div class="flex items-center gap-1 mb-2">
+                <div class="flex">${getStars(p.rating)}</div>
+                <span class="font-inter text-xs" style="color:rgba(255,255,255,0.4);">${p.rating} (${p.reviews.toLocaleString()} reviews)</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-poppins font-bold text-base" style="color:#DF6B33;">$${p.price.toFixed(2)}</span>
+                  ${originalPriceHtml}
+                </div>
+                ${stockLabel}
+                <span class="font-inter text-xs" style="color:rgba(255,255,255,0.3);">${p.sold.toLocaleString()} sold</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2 items-end justify-between flex-shrink-0">
+              <button class="w-8 h-8 rounded-lg flex items-center justify-center glass-card cursor-pointer hover:bg-white/10 transition-colors" onclick="event.stopPropagation(); toggleWishlist(${p.id})">
+                <i data-lucide="heart" class="w-3.5 h-3.5 text-gray-400"></i>
+              </button>
+              <button class="primary-btn w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer">
+                <i data-lucide="shopping-cart" class="w-4 h-4 text-white"></i>
+              </button>
+            </div>
+          </div>`;
+        }
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function applyFilters() {
+      let filtered = [...allProducts];
+
+      // Category
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentCategory);
+      }
+
+      // Price
+      if (currentPrice === 'under50') filtered = filtered.filter(p => p.price < 50);
+      else if (currentPrice === '50to100') filtered = filtered.filter(p => p.price >= 50 && p.price <= 100);
+      else if (currentPrice === '100to200') filtered = filtered.filter(p => p.price > 100 && p.price <= 200);
+      else if (currentPrice === 'above200') filtered = filtered.filter(p => p.price > 200);
+
+      // Rating
+      if (currentRating === '4') filtered = filtered.filter(p => p.rating >= 4);
+      else if (currentRating === '3') filtered = filtered.filter(p => p.rating >= 3);
+
+      // Sort
+      if (currentSort === 'price-low') filtered.sort((a, b) => a.price - b.price);
+      else if (currentSort === 'price-high') filtered.sort((a, b) => b.price - a.price);
+      else if (currentSort === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+      else if (currentSort === 'newest') filtered.sort((a, b) => b.id - a.id);
+      else filtered.sort((a, b) => b.reviews - a.reviews); // popular
+
+      renderProducts(filtered);
+    }
+
+    function filterCategory(el, cat) {
+      document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      currentCategory = cat;
+      applyFilters();
+    }
+
+    function filterPrice(el, price) {
+      el.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      currentPrice = price;
+      applyFilters();
+    }
+
+    function filterRating(el, rating) {
+      el.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      currentRating = rating;
+      applyFilters();
+    }
+
+    function sortProducts(val) {
+      currentSort = val;
+      applyFilters();
+    }
+
+    function setView(mode) {
+      viewMode = mode;
+      document.getElementById('view-grid').querySelector('i').setAttribute('data-lucide', mode === 'grid' ? 'layout-grid' : 'layout-grid');
+      document.getElementById('view-grid').querySelector('i').style.color = mode === 'grid' ? '#DF6B33' : '#6b7280';
+      document.getElementById('view-list').querySelector('i').setAttribute('data-lucide', mode === 'list' ? 'list' : 'list');
+      document.getElementById('view-list').querySelector('i').style.color = mode === 'list' ? '#DF6B33' : '#6b7280';
+      lucide.createIcons();
+      applyFilters();
+    }
+
+    function addToCart(id) {
+      const p = allProducts.find(x => x.id === id);
+      console.log('Added to cart:', p.name);
+    }
+
+    function toggleWishlist(id) {
+      const p = allProducts.find(x => x.id === id);
+      console.log('Toggle wishlist:', p.name);
+    }
+
+    // Initial render
+    renderProducts(allProducts);
+  </script>
+
+</body>
+</html>
