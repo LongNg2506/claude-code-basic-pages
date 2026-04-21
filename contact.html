@@ -63,12 +63,55 @@
       <div class="flex items-center gap-3">
         <a href="login.html" class="font-inter text-sm font-medium hidden sm:block" style="color: rgba(255,255,255,0.6);">Sign In</a>
         <a href="register.html" class="primary-btn font-inter text-sm font-medium text-white px-4 py-2 rounded-xl cursor-pointer">Get Started</a>
-        <button class="md:hidden p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer">
-          <i data-lucide="menu" class="w-5 h-5 text-gray-400"></i>
+        <button class="md:hidden p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer" onclick="toggleMobileMenu()">
+          <i data-lucide="menu" id="menu-icon" class="w-5 h-5 text-gray-400"></i>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-[100] hidden" onclick="toggleMobileMenu()">
+    <div class="absolute inset-0" style="background: rgba(9,10,20,0.85); backdrop-filter: blur(4px);"></div>
+    <div class="absolute right-0 top-0 h-full w-72 p-6 flex flex-col" style="background: rgba(15,16,30,0.98); border-left: 1px solid rgba(255,255,255,0.07);" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #DF6B33, #e8834e);">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="font-poppins font-bold text-lg text-white">ShopFlow</span>
+        </div>
+        <button class="p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer" onclick="toggleMobileMenu()">
+          <i data-lucide="x" class="w-5 h-5 text-gray-400"></i>
+        </button>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a href="home.html" class="flex items-center gap-3 px-4 py-3 rounded-xl font-inter text-sm font-medium hover:bg-white/5 transition-colors" style="color: rgba(255,255,255,0.7);">
+          <i data-lucide="home" class="w-4 h-4"></i>Home
+        </a>
+        <a href="charts.html" class="flex items-center gap-3 px-4 py-3 rounded-xl font-inter text-sm font-medium hover:bg-white/5 transition-colors" style="color: rgba(255,255,255,0.7);">
+          <i data-lucide="bar-chart-3" class="w-4 h-4"></i>Dashboard
+        </a>
+        <a href="products.html" class="flex items-center gap-3 px-4 py-3 rounded-xl font-inter text-sm font-medium hover:bg-white/5 transition-colors" style="color: rgba(255,255,255,0.7);">
+          <i data-lucide="package" class="w-4 h-4"></i>Products
+        </a>
+        <a href="about.html" class="flex items-center gap-3 px-4 py-3 rounded-xl font-inter text-sm font-medium hover:bg-white/5 transition-colors" style="color: rgba(255,255,255,0.7);">
+          <i data-lucide="building-2" class="w-4 h-4"></i>About
+        </a>
+        <a href="contact.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white font-inter text-sm font-medium" style="background: rgba(223,107,51,0.15);">
+          <i data-lucide="message-circle" class="w-4 h-4" style="color: #DF6B33;"></i>Contact
+        </a>
+      </nav>
+      <div class="space-y-3 pt-4" style="border-top: 1px solid rgba(255,255,255,0.07);">
+        <a href="login.html" class="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl font-inter text-sm font-medium border border-white/15 hover:border-white/25 transition-colors" style="color: rgba(255,255,255,0.7);">
+          <i data-lucide="log-in" class="w-4 h-4"></i>Sign In
+        </a>
+        <a href="register.html" class="primary-btn flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl font-inter text-sm font-medium text-white cursor-pointer">
+          <i data-lucide="user-plus" class="w-4 h-4"></i>Get Started
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Main -->
   <main>
@@ -333,6 +376,12 @@
 
   <script>
     lucide.createIcons();
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu.classList.contains('hidden')) { menu.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+      else { menu.classList.add('hidden'); document.body.style.overflow = ''; }
+      lucide.createIcons();
+    }
   </script>
 
 </body>
